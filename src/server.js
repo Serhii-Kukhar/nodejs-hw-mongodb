@@ -5,8 +5,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { getEnvVar } from './utils/getEnvVar.js';
-
-import { getAllContacts, getContactById } from './services/contact.js';
+import router from './routers/contacts.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 dotenv.config();
 const PORT = Number(getEnvVar('PORT', '3000'));
@@ -26,32 +27,11 @@ export const setupServer = () => {
     });
   });
 
-  app.get('/contacts', async (req, res, next) => {
-    const contacts = await getAllContacts();
+  app.use(router);
 
-    res.status(200).json({
-      status: 200,
-      message: 'Successfully found contacts!',
-      data: contacts,
-    });
-  });
+  app.use(notFoundHandler);
 
-  app.get('/contacts/:contactId', async (req, res, next) => {
-    const { contactId } = req.params;
-    const contact = await getContactById(contactId);
-
-    if (!contact) {
-      return res.status(404).json({
-        message: 'Contact not found',
-      });
-    }
-
-    res.status(200).json({
-      status: 200,
-      message: 'Successfully found contact with id ${contactId}!',
-      data: contact,
-    });
-  });
+  app.use(errorHandler);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
