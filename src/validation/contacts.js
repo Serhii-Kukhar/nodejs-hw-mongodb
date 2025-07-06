@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { isValidObjectId } from 'mongoose';
 
 const phonePattern = /^[0-9+\-() ]{6,16}$/;
 
@@ -27,6 +28,12 @@ export const createContactSchema = Joi.object({
   }),
   isFavourite: Joi.boolean().messages({
     'boolean.base': 'isFavourite must be a boolean value',
+  }),
+  parentId: Joi.string().custom((value, helper) => {
+    if (value && !isValidObjectId(value)) {
+      return helper.message('Parent id should be a valid mongo id');
+    }
+    return true;
   }),
 });
 

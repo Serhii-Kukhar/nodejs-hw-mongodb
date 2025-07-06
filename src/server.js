@@ -5,9 +5,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { getEnvVar } from './utils/getEnvVar.js';
-import router from './routers/contacts.js';
+import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const PORT = Number(getEnvVar('PORT', '3000'));
@@ -18,6 +19,7 @@ export const setupServer = () => {
   app.use(express.json());
   app.use(cors());
   app.use(pino());
+  app.use(cookieParser());
 
   app.get('/', (req, res) => {
     res.json({
