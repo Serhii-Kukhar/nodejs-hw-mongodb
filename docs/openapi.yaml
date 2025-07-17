@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: <назва вашого додатку>
+  title: <Contacts APP API>
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -14,7 +14,7 @@ tags:
 
 servers:
   - url: http://localhost:3000
-  - url: #посилання на задеплоєний сайт
+  - url: https://swagger-cl30.onrender.com/
 
 paths:
   /contacts:
