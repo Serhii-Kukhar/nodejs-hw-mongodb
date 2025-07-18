@@ -29,7 +29,7 @@ parameters:
       enum: ['asc', 'desc']
       example: 'asc'
   - in: query
-    name: contact type
+    name: contactType
     schema:
       type: string
       enum: ['work', 'home', 'personal']

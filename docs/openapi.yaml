@@ -1,11 +1,11 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: <Contacts APP API>
+  title: Contacts Book API
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  description: This is a documentation of contacts app
+  description: This API allows users to register, log in, and manage their personal contact list with names, phone numbers, and optional images.
 tags:
   - name: Contacts
     description: Operations about users.
