@@ -76,7 +76,7 @@
           },
           {
             "in": "query",
-            "name": "contact type",
+            "name": "contactType",
             "schema": {
               "type": "string",
               "enum": ["work", "home", "personal"],
